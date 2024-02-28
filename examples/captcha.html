@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Captcha Example</title>
+
+        <style>
+            html,body{
+                height: 100%;
+            }
+
+            body{
+                margin: 0px;
+            }
+
+            body,form{
+                display: grid;
+                align-items: center;
+                justify-items: center;
+                gap: 8px;
+            }
+        </style>
+    </head>
+
+    <body></body>
+
+    <script type="module">
+        import {formAntiSpam} from "../v/1.js";
+
+        formAntiSpam({elem:document.body,exclude:".g-recaptcha",form:`
+            <form onsubmit="if(!grecaptcha.enterprise.getResponse()) event.preventDefault()">
+                <label>Stuff</label>
+                <input name="one">
+                <label>Stuff</label>
+                <input name="two">
+                <label>Stuff</label>
+                <input name="three">
+                <div class="g-recaptcha" data-sitekey="6LdVaHwpAAAAABpuG0R6InWvvUNofXzcalUyRly3" data-action="LOGIN"></div>
+                <button type="submit">Submit</button>
+            </form>
+        `});
+    </script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+</html>

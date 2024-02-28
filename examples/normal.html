@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Example</title>
+
+        <style>
+            html,body{
+                height: 100%;
+            }
+
+            body{
+                margin: 0px;
+            }
+
+            body,form{
+                display: grid;
+                align-items: center;
+                justify-items: center;
+                gap: 8px;
+            }
+        </style>
+    </head>
+
+    <body></body>
+
+    <script type="module">
+        import {formAntiSpam} from "../v/1.js";
+
+        formAntiSpam({elem:document.body,form:`
+            <form>
+                <label>Stuff</label>
+                <input name="one">
+                <label>Stuff</label>
+                <input name="two">
+                <label>Stuff</label>
+                <input name="three">
+                <button type="submit">Submit</button>
+            </form>
+        `});
+    </script>
+</html>
