@@ -2,7 +2,7 @@
 // https://github.com/Meterel/form-anti-spam
 
 
-export function formAntiSpam({elem,exclude,form}){
+export async function formAntiSpam({elem,exclude,form}){
     for(const x of document.querySelectorAll("script")) if(x.innerHTML.includes("formAntiSpam")) x.remove();
 
     let root;
@@ -12,6 +12,8 @@ export function formAntiSpam({elem,exclude,form}){
         root=elem.lastElementChild;
         selector+=":not("+exclude+")";
     }else{
+        if(document.readyState!=="complete") await new Promise(r=>addEventListener("load",r));
+
         root=elem.attachShadow({mode:"closed"});
         root.innerHTML=form;
 
