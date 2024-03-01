@@ -23,23 +23,25 @@
         </style>
     </head>
 
-    <body></body>
+    <body>
+        <div id="form-container"></div>
 
-    <script type="module">
-        import {formAntiSpam} from "../v/1.js";
-
-        formAntiSpam({elem:document.body,exclude:".g-recaptcha",form:`
-            <form onsubmit="if(!grecaptcha.enterprise.getResponse()) event.preventDefault()">
-                <label>Stuff</label>
-                <input name="one">
-                <label>Stuff</label>
-                <input name="two">
-                <label>Stuff</label>
-                <input name="three">
-                <div class="g-recaptcha" data-sitekey="6LdVaHwpAAAAABpuG0R6InWvvUNofXzcalUyRly3" data-action="LOGIN"></div>
-                <button type="submit">Submit</button>
-            </form>
-        `});
-    </script>
-    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+        <script type="module">
+            import {formAntiSpam} from "../v/1.js";
+    
+            formAntiSpam({elem:document.getElementById("form-container"),exclude:".g-recaptcha",form:`
+                <form onsubmit="if(!grecaptcha.enterprise.getResponse()) event.preventDefault()">
+                    <label>Stuff</label>
+                    <input name="one">
+                    <label>Stuff</label>
+                    <input name="two">
+                    <label>Stuff</label>
+                    <input name="three">
+                    <div class="g-recaptcha" data-sitekey="6LdVaHwpAAAAABpuG0R6InWvvUNofXzcalUyRly3" data-action="LOGIN"></div>
+                    <button type="submit">Submit</button>
+                </form>
+            `});
+        </script>
+        <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    </body>
 </html>

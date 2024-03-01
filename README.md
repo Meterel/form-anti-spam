@@ -9,18 +9,22 @@ This works by making the form unaccessible from JS.
 ## Small Example
 
 ```html
-<script type="module">
-    import {formAntiSpam} from "https://meterel.github.io/form-anti-spam/v/1.js";
+<body>
+    <div id="form-container"></div>
 
-    formAntiSpam({elem:document.body,form:`
-        <form>
-            <input name="one">
-            <input name="two">
-            <input name="three">
-            <button type="submit">Submit</button>
-        </form>
-    `});
-</script>
+    <script type="module">
+        import {formAntiSpam} from "https://meterel.github.io/form-anti-spam/v/1.js";
+
+        formAntiSpam({elem:document.getElementById("form-container"),form:`
+            <form>
+                <input name="one">
+                <input name="two">
+                <input name="three">
+                <button type="submit">Submit</button>
+            </form>
+        `});
+    </script>
+</body>
 ```
 
 ## Examples

@@ -23,21 +23,23 @@
         </style>
     </head>
 
-    <body></body>
+    <body>
+        <div id="form-container"></div>
 
-    <script type="module">
-        import {formAntiSpam} from "../v/1.js";
+        <script type="module">
+            import {formAntiSpam} from "../v/1.js";
 
-        formAntiSpam({elem:document.body,form:`
-            <form>
-                <label>Stuff</label>
-                <input name="one">
-                <label>Stuff</label>
-                <input name="two">
-                <label>Stuff</label>
-                <input name="three">
-                <button type="submit">Submit</button>
-            </form>
-        `});
-    </script>
+            formAntiSpam({elem:document.getElementById("form-container"),form:`
+                <form>
+                    <label>Stuff</label>
+                    <input name="one">
+                    <label>Stuff</label>
+                    <input name="two">
+                    <label>Stuff</label>
+                    <input name="three">
+                    <button type="submit">Submit</button>
+                </form>
+            `});
+        </script>
+    </body>
 </html>
