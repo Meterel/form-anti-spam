@@ -22,7 +22,7 @@ export async function formAntiSpam({elem,exclude,form}){
             try{
                 for(const r of s.cssRules){
                     try{
-                        style.insertRule(r.cssText);
+                        style.insertRule(r.cssText,style.cssRules.length);
                     }catch{}
                 }
             }catch{}
