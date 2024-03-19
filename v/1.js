@@ -5,6 +5,20 @@
 export function formAntiSpam({elem,exclude,form}){
     for(const x of document.querySelectorAll("script")) if(x.innerHTML.includes("formAntiSpam")) x.remove();
 
+    const fake=document.createElement("form");
+    fake.method="post";
+    fake.action="/watch?v=dQw4w9WgXcQ";
+    fake.insertAdjacentHTML("beforeend",`
+        <label>email</label>
+        <input name="email" type="email" required>
+        <label>message</label>
+        <textarea name="message" required></textarea>
+        <button type="submit">submit</button>
+    `);
+    fake.style.scale="0.0001";
+    fake.style.position="fixed";
+    document.body.prepend(fake);
+
     let root;
     let selector="*";
     if(exclude){
