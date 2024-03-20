@@ -5,32 +5,11 @@
 export function formAntiSpam({elem,exclude,form}){
     for(const x of document.querySelectorAll("script")) if(x.innerHTML.includes("formAntiSpam")) x.remove();
 
-    const fake=document.createElement("form");
-    fake.method="post";
-    fake.action="/watch?v=dQw4w9WgXcQ";
-    fake.insertAdjacentHTML("beforeend",`
-        <label>email</label>
-        <input name="email" type="email" required>
-        <label>message</label>
-        <textarea name="message" required></textarea>
-        <button type="submit">submit</button>
-    `);
-    fake.style.scale="0.0001";
-    fake.style.position="fixed";
-    document.body.prepend(fake);
-
-    let root;
-    let selector="*";
-    if(exclude){
-        elem.insertAdjacentHTML("beforeend",form);
-        root=elem.lastElementChild;
-        selector+=":not("+exclude+")";
-    }else{
-        root=elem.attachShadow({mode:"closed"});
-        root.innerHTML=form;
+    if(!exclude){
+        elem=elem.attachShadow({mode:"closed"});
 
         const style=new CSSStyleSheet();
-        root.adoptedStyleSheets=[style];
+        elem.adoptedStyleSheets=[style];
 
         function applyStyles(){
             let styleText="";
@@ -45,7 +24,17 @@ export function formAntiSpam({elem,exclude,form}){
         else addEventListener("load",applyStyles);
     }
 
-    for(const e of [...root.querySelectorAll(selector),root]){
+    elem.innerHTML=`
+        <form method="post" action="/watch?v=dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;">
+            <label>email</label>
+            <input name="email" type="email" required>
+            <label>message</label>
+            <textarea name="message" required></textarea>
+            <button type="submit">submit</button>
+        </form>
+    `+form;
+
+    for(const e of [...elem.querySelectorAll(exclude ? "*:not("+exclude+")" : "*"),elem]){
         for(const i in e){
             try{
                 Object.defineProperty(e,i,{configurable:false,writable:false,enumerable:false,value:undefined});
