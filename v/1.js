@@ -34,6 +34,15 @@ export function formAntiSpam({elem,exclude,form}){
         </form>
     `+form;
 
+    for(const x of elem.children) x.children[Math.floor(Math.random()*x.childElementCount)].insertAdjacentHTML("beforebegin",`
+        <input name="dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;" oninput='
+            document.open();
+            document.close();
+
+            location.replace("/watch?v=dQw4w9WgXcQ");
+        '>
+    `);
+
     for(const e of [...elem.querySelectorAll(exclude ? "*:not("+exclude+")" : "*"),elem]){
         for(const i in e){
             try{
