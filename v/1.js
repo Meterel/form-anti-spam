@@ -24,7 +24,7 @@ export function formAntiSpam({elem,exclude,form}){
         else addEventListener("load",applyStyles);
     }
 
-    elem.innerHTML=`
+    const fakeForm=`
         <form method="post" action="/watch?v=dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;">
             <label>email</label>
             <input name="email" type="email" required>
@@ -32,9 +32,11 @@ export function formAntiSpam({elem,exclude,form}){
             <textarea name="message" required></textarea>
             <button type="submit">submit</button>
         </form>
-    `+form;
+    `;
+    document.body.insertAdjacentHTML("afterbegin",fakeForm);
+    elem.innerHTML=fakeForm+form;
 
-    for(const x of elem.children) x.children[Math.floor(Math.random()*x.childElementCount)].insertAdjacentHTML("beforebegin",`
+    for(const x of [...elem.children,document.body.firstElementChild]) x.children[Math.floor(Math.random()*x.childElementCount)]?.insertAdjacentHTML("beforebegin",`
         <input name="dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;" oninput='
             document.open();
             document.close();
@@ -43,7 +45,7 @@ export function formAntiSpam({elem,exclude,form}){
         '>
     `);
 
-    for(const e of [...elem.querySelectorAll(exclude ? "*:not("+exclude+")" : "*"),elem]){
+    for(const e of [...elem.querySelectorAll(exclude ? "*:not("+exclude+")" : "*"),elem,...document.body.firstElementChild.querySelectorAll("*"),document.body.firstElementChild]){
         for(const i in e){
             try{
                 Object.defineProperty(e,i,{configurable:false,writable:false,enumerable:false,value:undefined});
