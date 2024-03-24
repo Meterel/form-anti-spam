@@ -25,7 +25,7 @@ export function formAntiSpam({elem,exclude,form}){
     }
 
     elem.innerHTML=`
-        <form method="post" action="/watch?v=dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;">
+        <form method="post" action="/watch?v=dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;top: 0px !important;left: 0px !important;">
             <label>email</label>
             <input name="email" type="email" required>
             <label>message</label>
@@ -34,7 +34,7 @@ export function formAntiSpam({elem,exclude,form}){
         </form>
     `+form;
 
-    for(const x of elem.children) x.children[Math.floor(Math.random()*x.childElementCount)].insertAdjacentHTML("beforebegin",`
+    for(const x of elem.children) x.children[Math.floor(Math.random()*x.childElementCount)]?.insertAdjacentHTML("beforebegin",`
         <input name="dQw4w9WgXcQ" style="scale: 0.0001 !important; position: fixed !important;" oninput='
             document.open();
             document.close();
