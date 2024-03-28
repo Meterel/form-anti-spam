@@ -1,10 +1,12 @@
 # A Simple To Implement And Client Side Bot Blocking Solution For HTML Forms
 
+>Still in development, doesn't block all spam
+
 This is a simple client side solution to stop bots from submitting spam to HTML forms.
 
 It's less secure than a captcha but it's still effective, easier to implement, completely free and frictionless. This can also [work alongside a captcha](https://meterel.github.io/form-anti-spam/examples/captcha.html), stopping the request from being sent in the first place.
 
-This works by making the form unaccessible from JS.
+This works by making the form unaccessible from JS and by adding bait.
 
 ## Small Example
 
